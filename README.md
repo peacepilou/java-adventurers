@@ -1,10 +1,10 @@
-# La Compagnie 🗡️
+# La compagnie d'aventuriers
 
-Une compagnie d'aventuriers part explorer un donjon. Un barbare qui tape d'abord, une magicienne dont les sorts ratent une fois sur deux, un nain qui compte chaque pièce d'or, une elfe qui trouve tout le monde trop bruyant. Ils se disputent le butin avant même de l'avoir trouvé.
+Une compagnie d'aventuriers part explorer un donjon ! Dans l'équipe, il y a : un barbare qui adore taper, une magicienne dont les sorts ratent une fois sur deux, un nain qui compte chaque pièce d'or et une elfe qui trouve tout le monde trop bruyant. 
 
-Ta mission : écrire cette compagnie en Java, **à la main**, sans IA. Rien n'est écrit pour toi : pas de classe, pas de test. Juste les règles du jeu. À toi de décider comment les faire respecter.
+Ta mission : écrire cette compagnie en Java.
 
-Tu as la matinée. L'après-midi, on corrige ensemble.
+Tu as la matinée.
 
 ## Démarrer
 
@@ -16,10 +16,10 @@ Dans IntelliJ, **Open**, puis choisis le dossier `java-adventurers` (celui qui c
 
 ## Les règles du jeu
 
-- **Personne n'existe dans un état absurde.** Un aventurier sans nom, un niveau 0, des points de vie négatifs : la compagnie refuse, dès la création. L'objet ne doit jamais exister, même une seconde.
+- **Personne n'existe dans un état absurde.** Exemple : un aventurier sans nom, un niveau 0, des points de vie négatifs... la compagnie doit refuser de créer de tels objets. 
 - **Ce qui ne change pas ne se modifie pas.** Si un nom ne change jamais, rien dans ta classe ne permet de le changer.
-- **Une erreur se dit.** Quand une règle est violée, une exception part, avec un message qui dit quoi et pourquoi : `Niveau invalide pour Grumli : 0`, pas `erreur`.
-- **Sans IA**, du début à la fin. Bloqué plus de dix minutes ? Ton voisin, puis le formateur.
+- **Une erreur se dit.** Quand une règle est enfreinte, une exception part, avec un message qui dit quoi et pourquoi. Exemple : `Niveau invalide pour Grumli : 0`.
+- **Sans IA**, du début à la fin.
 
 ---
 
@@ -30,7 +30,7 @@ Dans IntelliJ, **Open**, puis choisis le dossier `java-adventurers` (celui qui c
 Un aventurier a un **nom**, un **niveau**, des **points de vie** et une bourse de **pièces d'or**.
 
 - Le nom n'est ni vide ni fait d'espaces. Le niveau va de 1 à 20. Les points de vie de départ sont strictement positifs. La bourse commence à 0.
-- Une règle violée à la création lève une `InvalidAdventurerException`, que tu écris toi aussi.
+- Une règle enfreinte à la création lève une `InvalidAdventurerException`, que tu écris toi aussi.
 - `takeDamage(int damage)` retire des points de vie. Ils ne descendent jamais sous 0. Un dégât négatif est refusé.
 - `isAlive()` répond `true` tant qu'il lui reste des points de vie.
 - `earnGold(int amount)` ajoute des pièces. Un montant négatif est refusé.
@@ -44,12 +44,12 @@ On ne recrute pas « un aventurier ». On recrute un barbare, une magicienne, un
 
 Chacun attaque à sa façon, avec une méthode `attack()` qui renvoie les dégâts infligés :
 
-| Classe | Ce qu'elle a en plus | Ce que renvoie `attack()` |
-| --- | --- | --- |
-| `Barbarian` | une **force** | sa force + son niveau |
-| `Mage` | une réserve de **mana** | 3 × son niveau, et chaque sort coûte 5 de mana. Sans mana, elle lève une `OutOfManaException` |
-| `Dwarf` | une **hache**, qui a un nom | son niveau × 2. Le nain gagne 10 % de pièces d'or en plus à chaque `earnGold`, arrondi à l'entier inférieur |
-| `Elf` | un **arc**, et des flèches | 4 + son niveau, et chaque attaque consomme une flèche. Sans flèche, elle ne fait aucun dégât |
+| Classe      | Ce qu'elle a en plus        | Ce que renvoie `attack()`                                                                                   |
+| ----------- | --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `Barbarian` | une **force**               | sa force + son niveau                                                                                       |
+| `Mage`      | une réserve de **mana**     | 3 × son niveau, et chaque sort coûte 5 de mana. Sans mana, elle lève une `OutOfManaException`               |
+| `Dwarf`     | une **hache**, qui a un nom | son niveau × 2. Le nain gagne 10 % de pièces d'or en plus à chaque `earnGold`, arrondi à l'entier inférieur |
+| `Elf`       | un **arc**, et des flèches  | 4 + son niveau, et chaque attaque consomme une flèche. Sans flèche, elle ne fait aucun dégât                |
 
 Les règles de la partie 1 valent pour tous, sans que tu les réécrives dans chaque classe. La force, le mana et les flèches ne sont jamais négatifs.
 
@@ -82,7 +82,7 @@ Certains aventuriers savent soigner. Pas tous.
 4. Un butin de 101 pièces d'or, partagé.
 5. L'état de la compagnie après chaque étape, avec `toString()`.
 
-Puis, dans le même `main`, provoque **chacune de tes exceptions** au moins une fois. Attrape-la avec un `try` / `catch`, et affiche son message. Si une règle ne lève rien quand tu la violes, c'est qu'elle n'est pas protégée.
+Puis, dans le même `main`, provoque **chacune de tes exceptions** au moins une fois. Attrape-la avec un `try` / `catch`, et affiche son message. Si une règle ne lève rien quand tu l'enfreins, c'est qu'elle n'est pas protégée.
 
 ---
 
